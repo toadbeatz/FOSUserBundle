@@ -12,6 +12,7 @@
 namespace FOS\UserBundle\Model;
 
 use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 
 /**
@@ -20,7 +21,7 @@ use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
-abstract class User implements UserInterface, EquatableInterface, \Serializable
+abstract class User implements UserInterface,PasswordAuthenticatedUserInterface, EquatableInterface, \Serializable
 {
     /**
      * @var mixed
@@ -242,7 +243,7 @@ abstract class User implements UserInterface, EquatableInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function getPassword()
+    public function getPassword():?string
     {
         return $this->password;
     }
